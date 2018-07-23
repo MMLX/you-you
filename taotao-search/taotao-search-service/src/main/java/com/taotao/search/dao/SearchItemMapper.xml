@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taotao.search.dao.SearchItemMapper">
+
+	<select id="getItemList" resultType="com.taotao.common.pojo.SearchItem">
+		SELECT
+			a.id,
+			a.title,
+			a.sellPoint,
+			a.price,
+			a.image,
+			b.`name`,
+			c.itemDesc
+		FROM
+			tbitem a
+			LEFT JOIN
+			tbitemcat b
+		ON
+			a.cid=b.id
+			LEFT JOIN
+			tbitemdesc c
+		ON
+			a.id=c.itemId
+			WHERE
+			a.`status` = 1;
+
+	</select>
+	<select id="getItemById" parameterType="long" resultType="com.taotao.common.pojo.SearchItem">
+			SELECT
+			a.id,
+			a.title,
+			a.sellPoint sell_point,
+			a.price,
+			a.image,
+			b.`name` category_name,
+			c.itemDesc
+		FROM
+			tbitem a
+			LEFT JOIN
+			tbitemcat b
+		ON
+			a.cid=b.id
+			LEFT JOIN
+			tbitemdesc c
+		ON
+			a.id=c.itemId
+			WHERE
+			a.`status` = 1
+		AND
+			a.id = #{itemId};
+
+	</select>
+
+</mapper>

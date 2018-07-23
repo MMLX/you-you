@@ -1,0 +1,10 @@
+<hmtl>
+    <head>
+        <title>测试</title>
+    </head>
+    <body>
+        学生学号${student.id}
+        学生姓名${student.username}
+        学生年龄${student.age}
+    </body>
+</hmtl>
